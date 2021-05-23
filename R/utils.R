@@ -34,6 +34,26 @@ filterEmptyChr <- function(gr){
 ####################################
 ##### FUNCTION GET SEQINFO ######
 ####################################
+.seqlevelsStyle <- function(seqinfo, genomeStyle){
+        seqinfo <- tryCatch({
+          seqlevelsStyle(seqinfo) <- genomeStyle
+          seqinfo
+        }, error=function(e){
+          if(genomeStyle =='NCBI'){
+            if(class(seqinfo) == 'Seqinfo' | class(seqinfo) == 'GRanges'){
+              seqnames(seqinfo) <- gsub("^chr", "", seqnames(seqinfo), ignore.case=TRUE)
+              seqnames(seqinfo) <- gsub("^M$", "chrM", seqnames(seqinfo), ignore.case=TRUE)
+              genome(seqinfo) <- 'GRCh37.p13'
+            } else if(class(seqinfo) == 'character'){
+              seqnames(seqinfo) <- gsub("^chr", "", seqinfo, ignore.case=TRUE)
+              seqnames(seqinfo) <- gsub("^M$", "chrM", seqinfo, ignore.case=TRUE)
+            } 
+          }
+          seqinfo
+        })
+       return(seqinfo)
+}
+
 getSeqInfo <- function(genomeBuild = "hg19", genomeStyle = "NCBI"){
 	bsg <- paste0("BSgenome.Hsapiens.UCSC.", genomeBuild)
 	if (!require(bsg, character.only=TRUE, quietly=TRUE, warn.conflicts=FALSE)) {
@@ -41,7 +61,7 @@ getSeqInfo <- function(genomeBuild = "hg19", genomeStyle = "NCBI"){
 	} else {
 		seqinfo <- seqinfo(get(bsg))
 	}
-	seqlevelsStyle(seqinfo) <- genomeStyle
+	seqinfo <- .seqlevelsStyle(seqinfo, genomeStyle)
 	seqinfo <- keepSeqlevels(seqinfo, value = chrs)
 	#seqinfo <- cbind(seqnames = seqnames(seqinfo), as.data.frame(seqinfo))
 	return(seqinfo)	
@@ -56,7 +76,7 @@ excludeCentromere <- function(x, centromere, flankLength = 0, genomeStyle = "NCB
 	centromere$start <- centromere$start - flankLength
 	centromere$end <- centromere$end + flankLength
 	centromere <- as(centromere, "GRanges")
-	seqlevelsStyle(centromere) <- genomeStyle
+	centromere <- .seqlevelsStyle(centromere, genomeStyle)
 	centromere <- sort(centromere)	
 	hits <- findOverlaps(query = x, subject = centromere)
 	ind <- queryHits(hits)

@@ -325,7 +325,7 @@ plotChrLines <- function(chrs,chrBkpt,yrange){
   mid <- (chrBkpt[1:(numLines-1)]+chrBkpt[2:numLines])/2
   #chrs <- mapSeqlevels(as.vector(chrs), style = "NCBI")
   if (seqlevelsStyle(chrs)[1] != "NCBI"){
-  	seqlevelsStyle(chrs) <- "NCBI"
+  	chrs <- .seqlevelsStyle(chrs, "NCBI")
   }
   chrs <- sortSeqlevels(unique(chrs))
   axis(side=1,at=mid,labels=c(chrs),cex.axis=1.5,tick=FALSE)

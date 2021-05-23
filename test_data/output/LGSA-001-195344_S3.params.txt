@@ -1,0 +1,37 @@
+Sample	Tumor Fraction	Ploidy
+LGSA-001-195344_S3	0.6334	1.739
+
+
+LGSA-001-195344_S3
+Gender:	female
+Tumor Fraction:	0.6334
+Ploidy:	1.739
+Subclone Fraction:	0.1513
+Fraction Genome Subclonal:	0.01079
+Fraction CNA Subclonal:	0.03074
+Coverage:	NA
+ChrY coverage fraction:	0.0003359
+ChrX median log ratio:	-0.4818
+Student's t mean: -0.29, 0.086, 0.36, 0.58, 0.75, 0.037, 0.13
+Student's t precision: 740, 900, 390, 200, 200, 390, 200
+Gamma Rate Init:	0.01
+GC-Map correction MAD:	0.05444
+
+
+init	n_est	phi_est	BIC	Frac_genome_subclonal	Frac_CNA_subclonal	loglik
+n0.2-p2	0.0054	1.835	NA	0.34	1	3580
+n0.2-p3	0.078	2.74	NA	0.019	0.027	3352
+n0.3-p2	0.37	1.74	NA	0.013	0.039	3576
+n0.3-p3	0.078	2.74	NA	0.019	0.027	3352
+n0.4-p2	0.37	1.74	NA	0	0	3577
+n0.4-p3	0.078	2.74	NA	0.019	0.027	3352
+n0.5-p2	0.37	1.74	NA	0	0	3577
+n0.5-p3	0.08	2.74	NA	0.083	0.11	3375
+n0.6-p2	0.37	1.739	NA	0.011	0.031	3601
+n0.6-p3	0.62	2.477	NA	0.048	0.048	3222
+n0.7-p2	0.62	2.477	NA	0.048	0.048	3223
+n0.7-p3	0.62	2.477	NA	0.048	0.048	3222
+n0.8-p2	0.62	2.479	NA	0.088	0.088	3256
+n0.8-p3	0.62	2.477	NA	0.048	0.048	3223
+n0.9-p2	0.62	2.48	NA	0.17	0.17	3315
+n0.9-p3	0.62	2.477	NA	0.075	0.075	3241

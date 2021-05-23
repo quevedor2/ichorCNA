@@ -37,13 +37,13 @@ genomeStyle <- opt$genomeStyle
 maleChrXLogRThres <- opt$maleChrXLogRThres
 chrs <- as.character(eval(parse(text = opt$chrs)))
 chrNormalize <- as.character(eval(parse(text=opt$chrNormalize))); 
-seqlevelsStyle(chrs) <- genomeStyle
-seqlevelsStyle(chrNormalize) <- genomeStyle
+chrs <- .seqlevelsStyle(chrs, genomeStyle)
+chrNormalize <- .seqlevelsStyle(chrNormalize, genomeStyle)
 
 if (!is.null(centromere)){
 	centromere <- read.delim(centromere,header=T,stringsAsFactors=F,sep="\t")
 }
-seqlevelsStyle(centromere$Chr) <- genomeStyle
+centromere$Chr <- .seqlevelsStyle(centromere$Chr, genomeStyle)
 
 files <- read.delim(filelist, header = FALSE, stringsAsFactors=FALSE, sep ="\t")[, 1]
 
