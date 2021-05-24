@@ -109,9 +109,6 @@ genomeStyle <- opt$genomeStyle
 chrs <- as.character(eval(parse(text = opt$chrs)))
 chrTrain <- as.character(eval(parse(text=opt$chrTrain))); 
 chrNormalize <- as.character(eval(parse(text=opt$chrNormalize))); 
-chrs <- .seqlevelsStyle(chrs, genomeStyle)
-chrNormalize <- .seqlevelsStyle(chrNormalize, genomeStyle)
-chrTrain <- .seqlevelsStyle(chrTrain, genomeStyle)
 
 ## load ichorCNA library or source R scripts
 if (!is.null(libdir) && libdir != "None"){
@@ -123,6 +120,11 @@ if (!is.null(libdir) && libdir != "None"){
 } else {
     library(ichorCNA)
 }
+
+chrs <- .seqlevelsStyle(chrs, genomeStyle)
+chrNormalize <- .seqlevelsStyle(chrNormalize, genomeStyle)
+chrTrain <- .seqlevelsStyle(chrTrain, genomeStyle)
+
 
 ## load seqinfo 
 seqinfo <- getSeqInfo(genomeBuild, genomeStyle)
